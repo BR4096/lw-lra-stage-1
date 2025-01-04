@@ -65,7 +65,7 @@ const AssessmentSlider = ({ value, onChange, min = 0, max = 100, step = 5 }) => 
           style={getBackgroundSize()}
         />
       </div>
-      <div className="w-full flex justify-between text-sm text-gray-500 mt-1">
+      <div className="w-full flex justify-between text-sm text-gray-500 mt-0.5">
         <span>{min}</span>
         <span>{max}</span>
       </div>
