@@ -2,7 +2,7 @@
 /**
  * Plugin Name: LearnWell LRA Display
  * Description: Display Leadership Pipeline Risk Assessment results in a card layout
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: LearnWell
  * License: GPL v2 or later
  */
@@ -26,6 +26,9 @@ class LW_LRA_Display {
     private function __construct() {
         add_shortcode('lra_results', array($this, 'display_results'));
         add_action('wp_enqueue_scripts', array($this, 'enqueue_styles'));
+        
+        // Include the handler
+        require_once plugin_dir_path(__FILE__) . 'lw-lra-handler.php';
     }
 
     public function enqueue_styles() {
@@ -33,7 +36,7 @@ class LW_LRA_Display {
             'lw-lra-styles',
             plugins_url('css/lw-lra-styles.css', __FILE__),
             array(),
-            '1.0.0'
+            '1.0.1'
         );
     }
 
@@ -49,8 +52,15 @@ class LW_LRA_Display {
         return isset($contexts[$metric]) ? $contexts[$metric] : '';
     }
 
-    private function get_results_data($assessment_id) {
+    private function get_results_data($entry_id) {
         global $wpdb;
+        
+        // Get assessment ID from entry ID
+        $assessment_id = gform_get_meta($entry_id, 'lpa_assessment_id');
+        if (!$assessment_id) {
+            error_log('LPA Debug: No assessment ID found for entry ' . $entry_id);
+            return false;
+        }
         
         $table_name = $this->prefix . 'lpa_results';
         $query = $wpdb->prepare(
@@ -58,7 +68,12 @@ class LW_LRA_Display {
             $assessment_id
         );
         
-        return $wpdb->get_row($query);
+        $results = $wpdb->get_row($query);
+        if (!$results) {
+            error_log('LPA Debug: No results found for assessment ID ' . $assessment_id);
+        }
+        
+        return $results;
     }
 
     private function format_value($metric, $value) {
@@ -69,16 +84,16 @@ class LW_LRA_Display {
     }
 
     public function display_results($atts) {
-        // Get assessment ID from URL parameter
-        $assessment_id = isset($_GET['assessment']) ? intval($_GET['assessment']) : 0;
-        if (!$assessment_id) {
+        // Get entry ID from URL parameter
+        $entry_id = isset($_GET['assessment']) ? intval($_GET['assessment']) : 0;
+        if (!$entry_id) {
             return '<p>No assessment specified.</p>';
         }
 
         // Get results from database
-        $results = $this->get_results_data($assessment_id);
+        $results = $this->get_results_data($entry_id);
         if (!$results) {
-            return '<p>Assessment results not found.</p>';
+            return '<p>Assessment results not found. Please contact support if this error persists.</p>';
         }
 
         // Define metrics to display
