@@ -1,0 +1,73 @@
+/* Assessment Page Styles */
+.assessment-container {
+  @apply max-w-4xl mx-auto px-4 py-8;
+}
+
+.question-card {
+  @apply bg-white rounded-lg shadow-md p-6 mb-6 border border-gray-200;
+  @apply hover:shadow-lg transition-shadow duration-200;
+}
+
+.question-title {
+  @apply text-xl font-semibold text-gray-800 mb-4;
+}
+
+.question-description {
+  @apply text-gray-600 mb-6;
+}
+
+.input-field {
+  @apply w-full px-4 py-2 border border-gray-300 rounded-md;
+  @apply focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+  @apply outline-none transition-colors duration-200;
+}
+
+.navigation-buttons {
+  @apply flex justify-between items-center mt-6;
+}
+
+.nav-button {
+  @apply px-6 py-2 rounded-md text-white font-medium;
+  @apply transition-colors duration-200;
+}
+
+.nav-button.previous {
+  @apply bg-gray-500 hover:bg-gray-600;
+}
+
+.nav-button.next {
+  @apply bg-blue-600 hover:bg-blue-700;
+}
+
+/* Results Page Styles */
+.results-container {
+  @apply max-w-4xl mx-auto px-4 py-8;
+}
+
+.results-card {
+  @apply bg-white rounded-lg shadow-md p-6 mb-6 border border-gray-200;
+}
+
+.results-header {
+  @apply text-2xl font-bold text-gray-800 mb-6;
+}
+
+.metric-container {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+}
+
+.metric-card {
+  @apply bg-gray-50 rounded-lg p-4;
+}
+
+.metric-title {
+  @apply text-lg font-semibold text-gray-700 mb-2;
+}
+
+.metric-value {
+  @apply text-3xl font-bold text-blue-600;
+}
+
+.metric-benchmark {
+  @apply text-sm text-gray-500 mt-2;
+}
