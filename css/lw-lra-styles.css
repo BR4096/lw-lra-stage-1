@@ -1,56 +1,87 @@
-/* LRA Results Display Styles */
+/* Update to existing styles */
 
-.lra-results-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
+.lra-report-wrapper {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 2rem;
+    background: #fff;
 }
 
-.lra-card {
-    background: #ffffff;
-    border-radius: 10px;
+.lra-report-header {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #edf2f7;
+}
+
+.lra-report-header h1 {
+    color: #2d3748;
+    font-size: 2.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.lra-user-details {
+    background: #f7fafc;
     padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
+    border-radius: 8px;
+    margin-top: 1rem;
 }
 
-.lra-card:hover {
-    transform: translateY(-5px);
-}
-
-.lra-card-title {
-    color: #333;
-    font-size: 1.25rem;
-    margin: 0 0 1rem 0;
-    font-weight: 600;
-}
-
-.lra-card-value {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #2c5282;
+.lra-user-details p {
     margin: 0.5rem 0;
-    line-height: 1.2;
+    color: #4a5568;
+    font-size: 1.1rem;
 }
 
-.lra-card-context {
-    color: #666;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin: 1rem 0 0 0;
+.lra-section-title {
+    margin: 2rem 0;
+    padding: 1rem 0;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .lra-results-container {
-        grid-template-columns: 1fr;
-        padding: 1rem;
-    }
-    
-    .lra-card-value {
-        font-size: 2rem;
-    }
+.lra-section-title h2 {
+    color: #2d3748;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.lra-section-title p {
+    color: #718096;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.lra-cta-section {
+    margin-top: 4rem;
+    padding: 2rem;
+    background: #edf2f7;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.lra-cta-section h3 {
+    color: #2d3748;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.lra-cta-section p {
+    color: #4a5568;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.lra-cta-button {
+    display: inline-block;
+    background: #4299e1;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.lra-cta-button:hover {
+    background: #3182ce;
+    text-decoration: none;
+    color: white;
 }
